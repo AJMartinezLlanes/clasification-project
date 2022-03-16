@@ -36,10 +36,12 @@ def prep_telco(telco_df):
                               'streaming_movies', \
                               'contract_type', \
                               'internet_service_type', \
-                              'payment_type']], dummy_na=False, \
-                              drop_first=True)
+                              'payment_type']], dummy_na=False)
     # concat dummy variables to clean df
     telco_df = pd.concat([telco_df, dummy_df], axis=1)
+    # replace spaces, caps and special characters
+    telco_df.columns = telco_df.columns.str.replace(' ', '_', regex = False).str.lower()
+    telco_df.columns = telco_df.columns.str.replace('\(|\)-', '', regex = True)
     # return clean data
     return telco_df
 
@@ -50,9 +52,9 @@ def split_telco_data(telco_df):
     '''
     train_validate, test = train_test_split(telco_df, test_size=.2, 
                                         random_state=177, 
-                                        stratify=telco_df.churn)
+                                        stratify=telco_df.churn_encoded)
     train, validate = train_test_split(train_validate, test_size=.3, 
                                    random_state=177, 
-                                   stratify=train_validate.churn)
+                                   stratify=train_validate.churn_encoded)
     return train, validate, test
 

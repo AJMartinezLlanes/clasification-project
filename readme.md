@@ -16,7 +16,13 @@ by AJ Martinez
  - Next steps
 
 ## Data Dictionary
-
+|Column                                  |Meaning|
+|------                                  |--------|
+|partner                                 |Customer has a partner|
+|dependents                              |Customer has dependent(s)|
+|churn                                   |Customer has churned|
+|tenure                                  |Number of months with the company|
+|senior_citizen                          |Customer is senior citizen|
 
 ## Steps to reproduce
 
